@@ -1,15 +1,13 @@
 import ProductCard from './ProductCard';
 
-function ProductList({ products }) {
-  const inStockProducts = products.filter(p => p.inStock);
-
+function ProductList({ products, onRemove }) {
   return (
     <>
-      {inStockProducts.length === 0 ? (
+      {products.length === 0 ? (
         <p>No products are currently in stock.</p>
       ) : (
         products.map(product => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product.id} product={product} onRemove={onRemove} />
         ))
       )}
     </>

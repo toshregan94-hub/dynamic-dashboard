@@ -1,17 +1,25 @@
+import { useState } from 'react';
 import ProductList from './components/ProductList';
-const products = [
-  { id: 1, name: 'Laptop', price: 840, inStock: true },
-  { id: 2, name: 'Phone', price: 500, inStock: true },
-  { id: 3, name: 'Tablet', price: 200, inStock: false },
-  { id: 4, name: 'Headphones', price:100, inStock: true },
+
+const initialProducts = [
+  { id: 1, name: 'Laptop', price: '$999', inStock: true },
+  { id: 2, name: 'Phone', price: '$699', inStock: false },
+  { id: 3, name: 'Tablet', price: '$499', inStock: true },
 ];
 
-function App(){
-  return(
-    <div>
-      <ProductList products={products}/>
-    </div>
-  )
+function App() {
+  const [products, setProducts] = useState(initialProducts);
 
+  const removeProduct = (id) => {
+    setProducts(products.filter(p => p.id !== id));
+  };
+
+  return (
+    <div>
+      <h1>Product Dashboard</h1>
+      <ProductList products={products} onRemove={removeProduct} />
+    </div>
+  );
 }
+
 export default App;
